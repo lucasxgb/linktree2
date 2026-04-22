@@ -1,17 +1,32 @@
 import { Social } from "../../components/social/index.tsx";
 import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
-export function SocialFooter() {
+interface SocialLinkProps{
+  linkedin?: string,
+  instagram?: string,
+  github?: string,
+}
+
+export function SocialFooter({linkedin, instagram, github}:SocialLinkProps) {
   return (
     <footer className="flex justify-center gap-3 my-4">
-      <Social url="https://www.linkedin.com/in/lucasxgb/">
+     {linkedin &&  (<Social url={linkedin}>
         {<FaLinkedin size={35} color="#1c1c1c" />}
-      </Social>
-      <Social url="https://github.com/lucasxgb">
+      </Social>)
+      
+     }
+     {github && (
+     <Social url={github}>
         {<FaGithub size={35} color="#1c1c1c" />}
       </Social>
-      <Social url="https://www.instagram.com/gabriel.mxt/">
+     )
+
+     }
+      {instagram && (
+        <Social url={instagram}>
         {<FaInstagram size={35} color="#1c1c1c" />}
       </Social>
+      )
+      }
     </footer>
   );
 }
